@@ -35,8 +35,8 @@ router.post("/signup", async (req, res) => {
     email: normalizedEmail,
     password: passwordHash,
     avatar: avatar?.trim() || "",
-    // First user becomes admin; all others are regular team users.
-    isAdmin: userCount === 0
+    // First three users become admin; all others are regular team users.
+    isAdmin: userCount < 3
   });
 
   const token = signToken(user._id.toString());
